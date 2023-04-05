@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}{% endblock %}RiPPLE Learning Forum</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <style>
+            .chat-messages {
+                height: 400px;
+                overflow-y: auto;
+            }
+        </style>
+    </head>
+
+    <body class="bg-indigo-50">
+        <nav class="flex items-center justify-between px-4 py-6 bg-indigo-600">
+            <div>
+                <a href="/" class="text-3xl text-white">RiPPLE</a>
+            </div>
+            <div>
+                <p align="center" class="text-xl text-white">COMP5241 2223</p>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                {% if request.user.is_authenticated %}
+                    <a href="/rooms/" class="text-white hover:text-gray-300">Forum</a>
+
+                    <a href="/logout/" class="px-5 py-3 rounded-xl text-white bg-indigo-500 hover:bg-indigo-900">Log out</a>
+                {% else %}
+                    <a href="/login/" class="text-white hover:text-gray-300">Log in</a>
+            
+                    <a href="/signup/" class="px-5 py-3 rounded-xl text-white bg-indigo-900 hover:bg-indigo-900">Sign up</a>
+                {% endif %}
+            </div>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>
